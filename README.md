@@ -1,6 +1,10 @@
 # SolLightning intermediary
 
-An off-chain app handling BTC <-> Solana cross-chain swaps
+An off-chain app handling BTC <-> Solana cross-chain swaps, utilizing [SolLightning-program](https://github.com/adambor/SolLightning-program) Solana on-chain program.
+
+Principle of operation is described in depth [here](https://github.com/adambor/SolLightning-readme/blob/main/sol-submarine-swaps.md) (for lightning network swaps) and [here](https://github.com/adambor/SolLightning-readme/blob/main/sol-onchain-swaps.md) (for bitcoin on-chain swaps)
+
+__IMPORTANT NOTE: This is app is not yet safe to use, may contain bugs, and uncovered edge-cases, therefore it is only recommended to be used on Bitcoin testnet and Solana devnet__ 
 
 ## Requirements
 * bitcoind node
