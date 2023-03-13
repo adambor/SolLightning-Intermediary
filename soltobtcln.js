@@ -485,22 +485,32 @@ async function setupSOLtoBTCLN() {
             }
         } catch (e) {}
 
+        console.log("Expiry delay (second): ", expiryTimestamp.subtract(currentTimestamp).getValue());
+
         const maxUsableCLTV = expiryTimestamp.subtract(currentTimestamp).subtract(GRACE_PERIOD).divide(BITCOIN_BLOCKTIME.multiply(SAFETY_FACTOR)).floor();
 
         const { current_block_height } = await lncli.getHeight({lnd});
 
         let obj;
         try {
-            const req = {
+            const parsedRequest = await lncli.parsePaymentRequest({
+                request: req.body.pr
+            });
+
+            const probeReq = {
                 destination: parsedPR.payeeNodeKey,
                 cltv_delta: parsedPR.tagsObject.min_final_cltv_expiry,
                 mtokens: parsedPR.millisatoshis,
                 max_fee_mtokens: maxFeeBD.multiply(new bigDecimal(1000)).getValue(),
-                max_timeout_height: new bigDecimal(current_block_height).add(maxUsableCLTV).getValue()
+                max_timeout_height: new bigDecimal(current_block_height).add(maxUsableCLTV).getValue(),
+                payment: parsedRequest.payment,
+                total_mtokens: parsedPR.millisatoshis,
+                routes: parsedRequest.routes
             };
-            console.log("Req: ", req);
-            req.lnd = lnd;
-            obj = await lncli.probeForRoute(req);
+            //if(hints.length>0) req.routes = [hints];
+            console.log("Req: ", probeReq);
+            probeReq.lnd = lnd;
+            obj = await lncli.probeForRoute(probeReq);
         } catch (e) {
             console.log(e);
         }

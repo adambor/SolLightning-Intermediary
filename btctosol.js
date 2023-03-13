@@ -815,6 +815,8 @@ async function setupBTCtoSOL() {
 
             const {tokens_per_vbyte} = await lncli.getChainFeeRate({lnd, confirmation_target: 2});
 
+            console.log("[BTC->SOL: Create] Fee sats/vB: ", tokens_per_vbyte);
+
             const expectedNetworkFee = new bigDecimal(tokens_per_vbyte).multiply(new bigDecimal(HTLC_SWEEP_VBYTES)).multiply(NETWORK_FEE_MULTIPLIER).ceil();
 
             const swapFee = BASE_FEE.add(amountBD.multiply(FEE)).floor();
