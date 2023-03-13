@@ -193,7 +193,7 @@ async function processPaymentResult(tx, payment, vout) {
 
     let commitedHeader;
     try {
-        commitedHeader = await relayUtils.retrieveBlockLog(blockheader.hash);
+        commitedHeader = await relayUtils.retrieveBlockLog(blockheader.hash, blockheader.height+tx.confirmations-1);
     } catch (e) {
         console.error(e);
     }

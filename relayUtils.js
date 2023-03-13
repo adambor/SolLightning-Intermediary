@@ -36,6 +36,7 @@ async function retrieveBlockLog(blockhash, requiredBlockheight) {
 
     if(mainState.blockHeight < requiredBlockheight) {
         //Btc relay not synchronized to required blockheight
+        console.log("not synchronized to required blockheight");
         return null;
     }
 

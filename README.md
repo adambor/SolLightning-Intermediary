@@ -4,7 +4,18 @@ An off-chain app handling BTC <-> Solana cross-chain swaps, utilizing [SolLightn
 
 Principle of operation is described in depth [here](https://github.com/adambor/SolLightning-readme/blob/main/sol-submarine-swaps.md) (for lightning network swaps) and [here](https://github.com/adambor/SolLightning-readme/blob/main/sol-onchain-swaps.md) (for bitcoin on-chain swaps)
 
-__IMPORTANT NOTE: This is app is not yet safe to use, may contain bugs, and uncovered edge-cases, therefore it is only recommended to be used on Bitcoin testnet and Solana devnet__ 
+This software is made to be used in conjunction with [client SDK](https://github.com/adambor/SolLightning-sdk).
+
+**NOTE: This implementation is hardcoded to use bitcoin testnet3 and solana devnet, as it is still in alpha stage and is not safe to use for live systems. MAY contain bugs and uncovered edge-cases**
+
+## REST API
+This app starts an http rest api server on several separate ports:
+* 4000: For BTCLN -> Solana swap handling
+* 4001: For Solana -> BTCLN swap handling
+* 4002: For BTC -> Solana swap handling
+* 4003: For Solana -> BTC swap handling
+
+Be sure to open those ports so client SDK can call the REST APIs.
 
 ## Requirements
 * bitcoind node
