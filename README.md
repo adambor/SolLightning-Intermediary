@@ -45,7 +45,7 @@ Be sure to open those ports so client SDK can call the REST APIs.
     wallet-unlock-password-file=path/to/password-file
     ```
 7. Get the certificate by  ```base64 --wrap=0 ~/.lnd/tls.cert``` and copy the output to LN_CERT field in _.env file
-8. Get the admin macaroon by  ```base64 --wrap=0 ~/.lnd/data/chain/bitcoin/mainnet/admin.macaroon``` and copy the output to LN_MACAROON field in _.env file
+8. Get the admin macaroon by  ```base64 --wrap=0 ~/.lnd/data/chain/bitcoin/testnet/admin.macaroon``` and copy the output to LN_MACAROON field in _.env file
 9. Set the ip and port in the _.env (not needed if using provided [lnd.conf](https://github.com/adambor/SolLightning-Intermediary/blob/main/lnd/lnd.conf))
 10. Get the bitcoin address ```lncli -n testnet newaddress p2wkh```
 11. Get some testnet bitcoin to that address through one of the faucets:
