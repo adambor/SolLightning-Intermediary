@@ -978,7 +978,7 @@ async function processLogSOLtoBTC({events, instructions}) {
         }
 
         if(event.name==="RefundEvent") {
-            const paymentHash = Buffer.from(event.data.hash).digest().toString("hex");
+            const paymentHash = Buffer.from(event.data.hash).toString("hex");
 
             const savedInvoice = invoices[paymentHash];
 

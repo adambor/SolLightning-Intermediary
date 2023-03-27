@@ -127,7 +127,7 @@ async function setupBTCLNtoSOLRefunder() {
             const currentTime = new bigDecimal(Math.floor(Date.now()/1000)-MAX_SOL_SKEW);
 
             if(expiryTime.compareTo(currentTime)<0) {
-                cancelInvoices.push(swap.paymentHash.substring(2));
+                cancelInvoices.push(swap.paymentHash);
 
                 try {
                     const account = await program.account.escrowState.fetch(getEscrowStateKey(Buffer.from(swap.paymentHash, "hex")));

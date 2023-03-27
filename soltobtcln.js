@@ -314,7 +314,7 @@ async function processSOLtoBTCLN(invoiceData, offerer, data) {
             return;
         }
 
-        const maxFee = amountBD.subtract(invoiceData.swapFee);
+        const maxFee = tokenAmount.subtract(amountBD).subtract(invoiceData.swapFee);
 
         console.log("[SOL->BTCLN: SOL.PaymentRequest] Invoice amount: ", amountBD.getValue());
         console.log("[SOL->BTCLN: SOL.PaymentRequest] Token amount: ", tokenAmount.getValue());
